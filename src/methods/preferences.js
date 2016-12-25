@@ -2,7 +2,7 @@ const Args = require('args-js');
 const q = require('q');
 
 module.exports = {
-  getPreference: function() {
+  getPreferences: function() {
     const args = Args([
       {table: Args.STRING | Args.Required},
       {callback:  Args.FUNCTION | Args.Optional}
@@ -20,7 +20,7 @@ module.exports = {
     return deferred.promise.nodeify(args.callback);
   },
 
-  updatePreference: function() {
+  updatePreferences: function() {
     const args = Args([
       {table: Args.STRING | Args.Required},
       {data: Args.OBJECT | Args.Required},
