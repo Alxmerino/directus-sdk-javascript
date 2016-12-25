@@ -2,7 +2,7 @@ const Args = require('args-js');
 const q = require('q');
 
 module.exports = {
-  createTable() {
+  createTable: function() {
     if(this.apiVersion < 1.1) throw Error(`This method can't be used with api version ${this.apiVersion} use version ^1.1 instead`);
 
     const args = Args([
