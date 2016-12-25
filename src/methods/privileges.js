@@ -4,7 +4,6 @@ const q = require('q');
 module.exports = {
   createPrivileges: function() {
     const args = Args([
-      {id: Args.INT | Args.Required},
       {data: Args.OBJECT | Args.Required},
       {callback: Args.FUNCTION | Args.Optional}
     ], arguments);
@@ -13,7 +12,7 @@ module.exports = {
 
     const variables = [args.id];
 
-    this.performRequest('POST', this.endpoints.columnList, variables, args.data, (err, res) => {
+    this.performRequest('POST', this.endpoints.groupPrivileges, variables, args.data, (err, res) => {
       if(err) deferred.reject(err);
       deferred.resolve(res);
     });
@@ -33,7 +32,7 @@ module.exports = {
       args.id
     ];
 
-    this.performRequest('GET', this.endpoints.columnList, variables, (err, res) => {
+    this.performRequest('GET', this.endpoints.groupPrivileges, variables, (err, res) => {
       if(err) deferred.reject(err);
       deferred.resolve(res);
     });
