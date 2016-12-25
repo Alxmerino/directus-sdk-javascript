@@ -4,7 +4,7 @@
  * Constructor function
  */
 
-function SDK(accessToken, url, apiVersion = 1) {
+function SDK(accessToken, url, apiVersion = 1.1) {
   // Throw errors if required params are missing
   if(!accessToken) throw new Error('No access token provided');
   if(!url) throw new Error('No Directus URL provided');
