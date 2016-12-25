@@ -19,5 +19,7 @@ module.exports = {
   activity:           'activity',
   bookmarkList:       'bookmarks',
   bookmarkSelf:       'bookmarks/self',
-  bookmarkInformation:'bookmarks/%s'
+  bookmarkInformation:'bookmarks/%s',
+  settings:           'settings',
+  settingsType:       'settings/%s'
 };

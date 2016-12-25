@@ -7,6 +7,7 @@ const { getPreference, updatePreference } = require('./methods/preferences');
 const { getMessages, getMessage } = require('./methods/messages');
 const { getActivity } = require('./methods/activity');
 const { getBookmarks, getUserBookmarks, getBookmark, createBookmark, deleteBookmark } = require('./methods/bookmarks');
+const { getSettings, getSettingsByCollection, updateSettings } = require('./methods/settings');
 
 module.exports = {
   buildPath,
@@ -44,5 +45,9 @@ module.exports = {
   getUserBookmarks,
   getBookmark,
   createBookmark,
-  deleteBookmark
+  deleteBookmark,
+
+  getSettings,
+  getSettingsByCollection,
+  updateSettings
 };
