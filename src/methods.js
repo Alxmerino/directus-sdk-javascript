@@ -48,9 +48,9 @@ module.exports = {
 
   getActivity,              // ^1.1
 
-  getBookmarks,             // ^1.1
+  getBookmarks,
   getUserBookmarks,         // ^1.1
-  getBookmark,              // ^1.1
+  getBookmark,
   createBookmark,           // ^1.1
   deleteBookmark,           // ^1.1
 
