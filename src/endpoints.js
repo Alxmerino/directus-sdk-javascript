@@ -13,5 +13,7 @@ module.exports = {
   fileList:           'files',
   fileInformation:    'files/%s',
   settingList:        'settings',
-  settingCollection:  'settings/%s'
+  settingCollection:  'settings/%s',
+  messageList:        'messages/rows',
+  messageInformation: 'messages/rows/%s'
 };

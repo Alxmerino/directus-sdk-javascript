@@ -4,6 +4,7 @@ const { createFile, getFiles, getFile, updateFile } = require('./methods/files')
 const { getTables, getTable, createTable } = require('./methods/tables');
 const { createPrivilege, getGroupPrivilege, getTablePrivilege, updatePrivilege } = require('./methods/privileges');
 const { getPreference, updatePreference } = require('./methods/preferences');
+const { getMessages, getMessage } = require('./methods/messages');
 
 module.exports = {
   buildPath,
@@ -30,5 +31,8 @@ module.exports = {
   updatePrivilege,
 
   getPreference,
-  updatePreference
+  updatePreference,
+
+  getMessages,
+  getMessage
 };
