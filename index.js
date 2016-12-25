@@ -15,7 +15,7 @@ module.exports = function(e) {
 }, function(e, t, r) {
     "use strict";
     function i(e, t) {
-        var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 1;
+        var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 1.1;
         if (!e) throw new Error("No access token provided");
         if (!t) throw new Error("No Directus URL provided");
         this.accessToken = e, this.url = t, this.apiVersion = i, this.baseEndpoint = this.url + "/" + this.apiVersion + "/", 
@@ -51,60 +51,65 @@ module.exports = function(e) {
     };
 }, function(e, t, r) {
     "use strict";
-    var i = r(4), a = i.buildPath, s = i.performRequest, o = r(8), n = o.createItem, l = o.getItems, c = o.getItem, u = o.updateItem, d = o.deleteItem, p = r(10), f = p.createFile, b = p.getFiles, m = p.getFile, T = p.updateFile, k = r(11), g = k.getTables, v = k.getTable, h = k.createTable, O = r(12), N = O.createPrivilege, I = O.getGroupPrivilege, R = O.getTablePrivilege, q = O.updatePrivilege, E = r(13), C = E.getPreference, y = E.updatePreference, F = r(14), B = F.getMessages, P = F.getMessage, U = r(15), G = U.getActivity, j = r(16), S = j.getBookmarks, x = j.getUserBookmarks, L = j.getBookmark, J = j.createBookmark, w = j.deleteBookmark, _ = r(17), A = _.getSettings, D = _.getSettingsByCollection, M = _.updateSettings;
+    var i = r(4), a = i.buildPath, o = i.performRequest, s = r(8), n = s.createItem, l = s.getItems, c = s.getItem, u = s.updateItem, d = s.deleteItem, p = r(10), f = p.createFile, m = p.getFiles, b = p.getFile, T = p.updateFile, h = r(11), k = h.getTables, v = h.getTable, g = h.createTable, O = r(12), N = O.createColumn, R = O.getColumns, I = O.getColumn, q = O.updateColumn, C = O.deleteColumn, E = r(13), y = E.createPrivilege, F = E.getGroupPrivilege, B = E.getTablePrivilege, G = E.updatePrivilege, U = r(14), P = U.getPreference, S = U.updatePreference, j = r(15), x = j.getMessages, w = j.getMessage, L = r(16), J = L.getActivity, V = r(17), _ = V.getBookmarks, D = V.getUserBookmarks, A = V.getBookmark, M = V.createBookmark, z = V.deleteBookmark, H = r(18), Y = H.getSettings, K = H.getSettingsByCollection, Q = H.updateSettings;
     e.exports = {
         buildPath: a,
-        performRequest: s,
+        performRequest: o,
         createItem: n,
         getItems: l,
         getItem: c,
         updateItem: u,
         deleteItem: d,
         createFile: f,
-        getFiles: b,
-        getFile: m,
+        getFiles: m,
+        getFile: b,
         updateFile: T,
-        getTables: g,
+        getTables: k,
         getTable: v,
-        createTable: h,
-        createPrivilege: N,
-        getGroupPrivilege: I,
-        getTablePrivilege: R,
-        updatePrivilege: q,
-        getPreference: C,
-        updatePreference: y,
-        getMessages: B,
-        getMessage: P,
-        getActivity: G,
-        getBookmarks: S,
-        getUserBookmarks: x,
-        getBookmark: L,
-        createBookmark: J,
-        deleteBookmark: w,
-        getSettings: A,
-        getSettingsByCollection: D,
-        updateSettings: M
+        createTable: g,
+        createColumn: N,
+        getColumns: R,
+        getColumn: I,
+        updateColumn: q,
+        deleteColumn: C,
+        createPrivilege: y,
+        getGroupPrivilege: F,
+        getTablePrivilege: B,
+        updatePrivilege: G,
+        getPreference: P,
+        updatePreference: S,
+        getMessages: x,
+        getMessage: w,
+        getActivity: J,
+        getBookmarks: _,
+        getUserBookmarks: D,
+        getBookmark: A,
+        createBookmark: M,
+        deleteBookmark: z,
+        getSettings: Y,
+        getSettingsByCollection: K,
+        updateSettings: Q
     };
 }, function(e, t, r) {
     "use strict";
-    var i = r(5).vsprintf, a = r(6), s = r(7);
+    var i = r(5).vsprintf, a = r(6), o = r(7);
     e.exports = {
         buildPath: function(e, t) {
             return i(e, t);
         },
         performRequest: function() {
-            var e = s([ {
-                method: s.STRING | s.Required
+            var e = o([ {
+                method: o.STRING | o.Required
             }, {
-                pathFormat: s.STRING | s.Required
+                pathFormat: o.STRING | o.Required
             }, {
-                variables: s.ARRAY | s.Optional,
+                variables: o.ARRAY | o.Optional,
                 _default: []
             }, {
-                paramsOrBody: s.OBJECT | s.Optional,
+                paramsOrBody: o.OBJECT | o.Optional,
                 _default: {}
             }, {
-                callback: s.FUNCTION | s.Required
+                callback: o.FUNCTION | o.Required
             } ], arguments), t = e.pathFormat.indexOf("%s") === -1 ? this.baseEndpoint + e.pathFormat : this.baseEndpoint + this.buildPath(e.pathFormat, e.variables), r = function(r, i, a) {
                 if (r) throw new Error(r);
                 r || 200 != i.statusCode ? 500 == i.statusCode ? e.callback(t + " returned internal server error (500)") : 404 == i.statusCode ? e.callback(t + " returned not found (404)") : 403 == i.statusCode && e.callback(t + " returned not authorized (403)") : e.callback(null, JSON.parse(a));
@@ -329,6 +334,77 @@ module.exports = function(e) {
     "use strict";
     var i = r(7), a = r(9);
     e.exports = {
+        createColumn: function() {
+            var e = i([ {
+                table: i.STRING | i.Required
+            }, {
+                data: i.OBJECT | i.Required
+            }, {
+                callback: i.FUNCTION | i.Optional
+            } ], arguments), t = a.defer(), r = [ e.table ];
+            return this.performRequest("POST", this.endpoints.columnList, r, e.data, function(e, r) {
+                e && t.reject(e), t.resolve(r);
+            }), t.promise.nodeify(e.callback);
+        },
+        getColumns: function() {
+            var e = i([ {
+                table: i.STRING | i.Required
+            }, {
+                params: i.OBJECT | i.Optional,
+                _default: {}
+            }, {
+                callback: i.FUNCTION | i.Optional
+            } ], arguments), t = a.defer(), r = [ e.table ];
+            return this.performRequest("GET", this.endpoints.columnList, r, e.params, function(e, r) {
+                e && t.reject(e), t.resolve(r);
+            }), t.promise.nodeify(e.callback);
+        },
+        getColumn: function() {
+            var e = i([ {
+                table: i.STRING | i.Required
+            }, {
+                column: i.STRING | i.Required
+            }, {
+                callback: i.FUNCTION | i.Optional
+            } ], arguments), t = a.defer(), r = [ e.table, e.column ];
+            return this.performRequest("GET", this.endpoints.columnInformation, r, function(e, r) {
+                e && t.reject(e), t.resolve(r);
+            }), t.promise.nodeify(e.callback);
+        },
+        updateColumn: function() {
+            var e = i([ {
+                table: i.STRING | i.Required
+            }, {
+                column: i.STRING | i.Required
+            }, {
+                data: i.OBJECT | i.Required
+            }, {
+                callback: i.FUNCTION | i.Optional
+            } ], arguments), t = a.defer(), r = [ e.table, e.column ];
+            return this.performRequest("PUT", this.endpoints.columnInformation, r, e.data, function(e, r) {
+                e && t.reject(e), t.resolve(r);
+            }), t.promise.nodeify(e.callback);
+        },
+        deleteColumn: function() {
+            var e = i([ {
+                table: i.STRING | i.Required
+            }, {
+                column: i.STRING | i.Required
+            }, {
+                deleteFromDB: i.BOOL | i.Optional,
+                _default: !1
+            }, {
+                callback: i.FUNCTION | i.Optional
+            } ], arguments), t = a.defer(), r = [ e.table, e.column ];
+            return this.performRequest("DELETE", this.endpoints.columnInformation, r, function(e, r) {
+                e && t.reject(e), t.resolve(r);
+            }), t.promise.nodeify(e.callback);
+        }
+    };
+}, function(e, t, r) {
+    "use strict";
+    var i = r(7), a = r(9);
+    e.exports = {
         createPrivileges: function() {
             var e = i([ {
                 id: i.INT | i.Required
@@ -436,6 +512,7 @@ module.exports = function(e) {
     var i = r(7), a = r(9);
     e.exports = {
         getActivity: function() {
+            if (this.apiVersion < 1.1) throw Error("This method can't be used with api version " + this.apiVersion + " use version ^1.1 instead");
             var e = i([ {
                 params: i.OBJECT | i.Optional,
                 _default: {}
@@ -452,6 +529,7 @@ module.exports = function(e) {
     var i = r(7), a = r(9);
     e.exports = {
         getBookmarks: function() {
+            if (this.apiVersion < 1.1) throw Error("This method can't be used with api version " + this.apiVersion + " use version ^1.1 instead");
             var e = i([ {
                 callback: i.FUNCTION | i.Optional
             } ], arguments), t = a.defer();
@@ -460,6 +538,7 @@ module.exports = function(e) {
             }), t.promise.nodeify(e.callback);
         },
         getUserBookmarks: function() {
+            if (this.apiVersion < 1.1) throw Error("This method can't be used with api version " + this.apiVersion + " use version ^1.1 instead");
             var e = i([ {
                 callback: i.FUNCTION | i.Optional
             } ], arguments), t = a.defer();
@@ -468,6 +547,7 @@ module.exports = function(e) {
             }), t.promise.nodeify(e.callback);
         },
         getBookmark: function() {
+            if (this.apiVersion < 1.1) throw Error("This method can't be used with api version " + this.apiVersion + " use version ^1.1 instead");
             var e = i([ {
                 id: i.INT | i.Required
             }, {
@@ -478,6 +558,7 @@ module.exports = function(e) {
             }), t.promise.nodeify(e.callback);
         },
         createBookmark: function() {
+            if (this.apiVersion < 1.1) throw Error("This method can't be used with api version " + this.apiVersion + " use version ^1.1 instead");
             var e = i([ {
                 data: i.OBJECT | i.Required
             }, {
@@ -488,6 +569,7 @@ module.exports = function(e) {
             }), t.promise.nodeify(e.callback);
         },
         deleteBookmark: function() {
+            if (this.apiVersion < 1.1) throw Error("This method can't be used with api version " + this.apiVersion + " use version ^1.1 instead");
             var e = i([ {
                 id: i.INT | i.Required
             }, {
