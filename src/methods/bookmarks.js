@@ -3,6 +3,8 @@ const q = require('q');
 
 module.exports = {
   getBookmarks: function() {
+    if(this.apiVersion < 1.1) throw Error(`This method can't be used with api version ${this.apiVersion} use version ^1.1 instead`);
+
     const args = Args([
       {callback:  Args.FUNCTION | Args.Optional}
     ], arguments);
@@ -18,6 +20,8 @@ module.exports = {
   },
 
   getUserBookmarks: function() {
+    if(this.apiVersion < 1.1) throw Error(`This method can't be used with api version ${this.apiVersion} use version ^1.1 instead`);
+
     const args = Args([
       {callback:  Args.FUNCTION | Args.Optional}
     ], arguments);
@@ -33,6 +37,8 @@ module.exports = {
   },
 
   getBookmark: function() {
+    if(this.apiVersion < 1.1) throw Error(`This method can't be used with api version ${this.apiVersion} use version ^1.1 instead`);
+
     const args = Args([
       {id: Args.INT | Args.Required},
       {callback: Args.FUNCTION | Args.Optional}
@@ -51,6 +57,8 @@ module.exports = {
   },
 
   createBookmark: function() {
+    if(this.apiVersion < 1.1) throw Error(`This method can't be used with api version ${this.apiVersion} use version ^1.1 instead`);
+
     const args = Args([
       {data: Args.OBJECT | Args.Required},
       {callback: Args.FUNCTION | Args.Optional}
@@ -67,6 +75,8 @@ module.exports = {
   },
 
   deleteBookmark: function() {
+    if(this.apiVersion < 1.1) throw Error(`This method can't be used with api version ${this.apiVersion} use version ^1.1 instead`);
+
     const args = Args([
       {id: Args.INT | Args.Required},
       {callback: Args.FUNCTION | Args.Optional}

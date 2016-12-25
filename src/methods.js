@@ -39,13 +39,13 @@ module.exports = {
   getMessages,
   getMessage,
 
-  getActivity,
+  getActivity,              // ^1.1
 
-  getBookmarks,
-  getUserBookmarks,
-  getBookmark,
-  createBookmark,
-  deleteBookmark,
+  getBookmarks,             // ^1.1
+  getUserBookmarks,         // ^1.1
+  getBookmark,              // ^1.1
+  createBookmark,           // ^1.1
+  deleteBookmark,           // ^1.1
 
   getSettings,
   getSettingsByCollection,
