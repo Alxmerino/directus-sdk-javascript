@@ -76,7 +76,7 @@ module.exports = {
 
     const variables = [args.table, args.id];
 
-    this.performRequest('PATCH', this.endpoints.tableEntry, variables, args.data, (err, res) => {
+    this.performRequest('PUT', this.endpoints.tableEntry, variables, args.data, (err, res) => {
       if(err) deferred.reject(err);
       deferred.resolve(res);
     });
@@ -102,7 +102,7 @@ module.exports = {
         deferred.resolve(res);
       });
     } else {
-      this.performRequest('PATCH', this.endpoints.tableEntry, variables, {active: 0}, (err, res) => {
+      this.performRequest('PUT', this.endpoints.tableEntry, variables, {active: 0}, (err, res) => {
         if(err) deferred.reject(err);
         deferred.resolve(res);
       });
