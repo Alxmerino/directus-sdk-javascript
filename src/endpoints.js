@@ -15,5 +15,6 @@ module.exports = {
   settingList:        'settings',
   settingCollection:  'settings/%s',
   messageList:        'messages/rows',
-  messageInformation: 'messages/rows/%s'
+  messageInformation: 'messages/rows/%s',
+  activity:           'activity'
 };
