@@ -6,6 +6,7 @@ const { createPrivilege, getGroupPrivilege, getTablePrivilege, updatePrivilege }
 const { getPreference, updatePreference } = require('./methods/preferences');
 const { getMessages, getMessage } = require('./methods/messages');
 const { getActivity } = require('./methods/activity');
+const { getBookmarks, getUserBookmarks, getBookmark, createBookmark, deleteBookmark } = require('./methods/bookmarks');
 
 module.exports = {
   buildPath,
@@ -37,5 +38,11 @@ module.exports = {
   getMessages,
   getMessage,
 
-  getActivity
+  getActivity,
+
+  getBookmarks,
+  getUserBookmarks,
+  getBookmark,
+  createBookmark,
+  deleteBookmark
 };

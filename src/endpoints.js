@@ -16,5 +16,8 @@ module.exports = {
   settingCollection:  'settings/%s',
   messageList:        'messages/rows',
   messageInformation: 'messages/rows/%s',
-  activity:           'activity'
+  activity:           'activity',
+  bookmarkList:       'bookmarks',
+  bookmarkSelf:       'bookmarks/self',
+  bookmarkInformation:'bookmarks/%s'
 };
