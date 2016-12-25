@@ -2,6 +2,7 @@ const { buildPath, performRequest } = require('./methods/base');
 const { createItem, getItems, getItem, updateItem, deleteItem } = require('./methods/items');
 const { createFile, getFiles, getFile, updateFile } = require('./methods/files');
 const { getTables, getTable, createTable } = require('./methods/tables');
+const { createColumn, getColumns, getColumn, updateColumn, deleteColumn } = require('./methods/columns');
 const { createPrivilege, getGroupPrivilege, getTablePrivilege, updatePrivilege } = require('./methods/privileges');
 const { getPreference, updatePreference } = require('./methods/preferences');
 const { getMessages, getMessage } = require('./methods/messages');
@@ -27,6 +28,12 @@ module.exports = {
   getTables,
   getTable,
   createTable,
+
+  createColumn,
+  getColumns,
+  getColumn,
+  updateColumn,
+  deleteColumn,
 
   createPrivilege,
   getGroupPrivilege,
