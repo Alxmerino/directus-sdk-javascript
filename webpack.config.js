@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  entry: [path.join(__dirname, 'src', 'ClientRemote.js')],
+  entry: [path.join(__dirname, 'src', 'index.js')],
   output: {
     path: __dirname,
     filename: 'index.js',
