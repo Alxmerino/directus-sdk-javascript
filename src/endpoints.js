@@ -9,6 +9,7 @@ module.exports = {
   groupList:          'groups',
   groupInformation:   'groups/%s',
   groupPrivileges:    'privileges/%s',
+  tablePrivileges:    'privileges/%s/%s',
   fileList:           'files',
   fileInformation:    'files/%s',
   settingList:        'settings',
