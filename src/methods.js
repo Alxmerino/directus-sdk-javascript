@@ -1,6 +1,18 @@
-module.exports = {
-  buildPath: require('./methods/base').buildPath,
-  performRequest: require('./methods/base').performRequest,
+const { buildPath, performRequest } = require('./methods/base');
+const { createItem, getItems, getItem, updateItem, deleteItem } = require('./methods/items');
+const { getTables, getTable, createTable } = require('./methods/tables');
 
-  createItem: require('./methods/items').createItem
+module.exports = {
+  buildPath,
+  performRequest,
+
+  createItem,
+  getItems,
+  getItem,
+  updateItem,
+  deleteItem,
+
+  getTables,
+  getTable,
+  createTable
 };
