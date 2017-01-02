@@ -51,7 +51,7 @@ module.exports = function(e) {
     };
 }, function(e, t, r) {
     "use strict";
-    var i = r(4), a = i.buildPath, o = i.performRequest, s = r(8), n = s.createItem, l = s.getItems, c = s.getItem, u = s.updateItem, d = s.deleteItem, p = r(10), f = p.createFile, m = p.getFiles, b = p.getFile, T = p.updateFile, h = r(11), k = h.getTables, v = h.getTable, g = h.createTable, O = r(12), N = O.createColumn, R = O.getColumns, I = O.getColumn, q = O.updateColumn, C = O.deleteColumn, E = r(13), y = E.createPrivilege, F = E.getGroupPrivilege, B = E.getTablePrivilege, G = E.updatePrivilege, U = r(14), P = U.getPreference, S = U.updatePreference, j = r(15), x = j.getMessages, w = j.getMessage, L = r(16), J = L.getActivity, V = r(17), _ = V.getBookmarks, D = V.getUserBookmarks, A = V.getBookmark, M = V.createBookmark, z = V.deleteBookmark, H = r(18), Y = H.getSettings, K = H.getSettingsByCollection, Q = H.updateSettings;
+    var i = r(4), a = i.buildPath, o = i.performRequest, s = r(8), n = s.createItem, l = s.getItems, c = s.getItem, u = s.updateItem, d = s.deleteItem, p = r(10), f = p.createFile, m = p.getFiles, b = p.getFile, T = p.updateFile, h = r(11), k = h.getTables, v = h.getTable, g = h.createTable, O = r(12), N = O.createColumn, R = O.getColumns, I = O.getColumn, q = O.updateColumn, C = O.deleteColumn, E = r(13), y = E.createPrivilege, F = E.getGroupPrivilege, B = E.getTablePrivilege, G = E.updatePrivilege, U = r(14), P = U.getPreference, S = U.updatePreference, j = r(15), x = j.getMessages, J = j.getMessage, L = r(16), w = L.getActivity, _ = r(17), V = _.getBookmarks, D = _.getUserBookmarks, A = _.getBookmark, M = _.createBookmark, z = _.deleteBookmark, H = r(18), Y = H.getSettings, K = H.getSettingsByCollection, Q = H.updateSettings;
     e.exports = {
         buildPath: a,
         performRequest: o,
@@ -79,9 +79,9 @@ module.exports = function(e) {
         getPreference: P,
         updatePreference: S,
         getMessages: x,
-        getMessage: w,
-        getActivity: J,
-        getBookmarks: _,
+        getMessage: J,
+        getActivity: w,
+        getBookmarks: V,
         getUserBookmarks: D,
         getBookmark: A,
         createBookmark: M,
@@ -407,13 +407,11 @@ module.exports = function(e) {
     e.exports = {
         createPrivileges: function() {
             var e = i([ {
-                id: i.INT | i.Required
-            }, {
                 data: i.OBJECT | i.Required
             }, {
                 callback: i.FUNCTION | i.Optional
             } ], arguments), t = a.defer(), r = [ e.id ];
-            return this.performRequest("POST", this.endpoints.columnList, r, e.data, function(e, r) {
+            return this.performRequest("POST", this.endpoints.groupPrivileges, r, e.data, function(e, r) {
                 e && t.reject(e), t.resolve(r);
             }), t.promise.nodeify(e.callback);
         },
@@ -423,7 +421,7 @@ module.exports = function(e) {
             }, {
                 callback: i.FUNCTION | i.Optional
             } ], arguments), t = a.defer(), r = [ e.id ];
-            return this.performRequest("GET", this.endpoints.columnList, r, function(e, r) {
+            return this.performRequest("GET", this.endpoints.groupPrivileges, r, function(e, r) {
                 e && t.reject(e), t.resolve(r);
             }), t.promise.nodeify(e.callback);
         },
@@ -458,7 +456,7 @@ module.exports = function(e) {
     "use strict";
     var i = r(7), a = r(9);
     e.exports = {
-        getPreference: function() {
+        getPreferences: function() {
             var e = i([ {
                 table: i.STRING | i.Required
             }, {
@@ -468,7 +466,7 @@ module.exports = function(e) {
                 e && t.reject(e), t.resolve(r);
             }), t.promise.nodeify(e.callback);
         },
-        updatePreference: function() {
+        updatePreferences: function() {
             var e = i([ {
                 table: i.STRING | i.Required
             }, {
@@ -529,7 +527,6 @@ module.exports = function(e) {
     var i = r(7), a = r(9);
     e.exports = {
         getBookmarks: function() {
-            if (this.apiVersion < 1.1) throw Error("This method can't be used with api version " + this.apiVersion + " use version ^1.1 instead");
             var e = i([ {
                 callback: i.FUNCTION | i.Optional
             } ], arguments), t = a.defer();
@@ -547,7 +544,6 @@ module.exports = function(e) {
             }), t.promise.nodeify(e.callback);
         },
         getBookmark: function() {
-            if (this.apiVersion < 1.1) throw Error("This method can't be used with api version " + this.apiVersion + " use version ^1.1 instead");
             var e = i([ {
                 id: i.INT | i.Required
             }, {
