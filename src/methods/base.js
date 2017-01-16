@@ -71,6 +71,19 @@ module.exports = {
         }, errorHandler);
         break;
 
+      case 'PUT':
+        request.put({
+          auth: {
+            bearer: this.accessToken
+          },
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(args.paramsOrBody),
+          url,
+        }, errorHandler);
+        break;
+
       case 'DELETE':
         request.delete({
           auth: {
